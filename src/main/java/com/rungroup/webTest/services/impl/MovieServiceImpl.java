@@ -6,12 +6,14 @@ import com.rungroup.webTest.repositories.MovieRepository;
 import com.rungroup.webTest.services.MovieService;
 import org.apache.catalina.Cluster;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class MovieServiceImpl implements MovieService {
-    private final MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -20,7 +22,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<MovieDto> findAllMovies() {
         List<Movie> movies = movieRepository.findAll();
-        return movies.stream().map(this::mapToMovieDto).collect(Collectors.toList());
+        return movies.stream().map((movie)->mapToMovieDto(movie)).collect(Collectors.toList());
     }
 
     private MovieDto mapToMovieDto(Movie movie){
