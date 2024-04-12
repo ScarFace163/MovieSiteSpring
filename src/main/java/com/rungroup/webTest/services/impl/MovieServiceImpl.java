@@ -30,6 +30,30 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.save(movie);
     }
 
+    @Override
+    public MovieDto findMovieById(long movieId) {
+        Movie movie = movieRepository.findById(movieId).get();
+        return  mapToMovieDto(movie);
+    }
+
+    @Override
+    public void updateMovie(MovieDto movieDto) {
+        Movie movie = mapToMovie(movieDto);
+        movieRepository.save(movie);
+    }
+
+    private Movie mapToMovie(MovieDto movieDto) {
+        return Movie.builder()
+                .id (movieDto.getId())
+                .title(movieDto.getTitle())
+                .photoUrl(movieDto.getPhotoUrl())
+                .description(movieDto.getDescription())
+                .year(movieDto.getYear())
+                .createdOn(movieDto.getCreatedOn())
+                .updatedOn(movieDto.getUpdatedOn())
+                .build();
+    }
+
     private MovieDto mapToMovieDto(Movie movie){
         return MovieDto.builder()
                 .id (movie.getId())
