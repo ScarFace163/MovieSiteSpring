@@ -24,7 +24,7 @@ public class Movie {
     private String title;
     private String photoUrl;
     private String description;
-    private Integer year;
+    private Long year;
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp

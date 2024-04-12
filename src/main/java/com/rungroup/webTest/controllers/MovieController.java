@@ -6,12 +6,13 @@ import com.rungroup.webTest.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import jakarta.validation.Valid;
 
-import javax.naming.Binding;
 import java.util.List;
 
 @Controller
@@ -38,8 +39,13 @@ public class MovieController {
     }
 
     @PostMapping("/movies/new")
-    public String saveMovie(@ModelAttribute("movie") Movie movie){
-        movieService.saveMovie(movie);
+    public String saveMovie(@Valid @ModelAttribute("movie") MovieDto movieDto,
+                            BindingResult result, Model model){
+        if ( result.hasErrors()){
+            model.addAttribute("movie",movieDto);
+            return  "movie-create";
+        }
+        movieService.saveMovie(movieDto);
         return "redirect:/movies";
     }
 
@@ -50,7 +56,12 @@ public class MovieController {
         return  "movies-edit";
     }
     @PostMapping("/movies/{id}/edit")
-    public String updateMovie(@PathVariable("id") Long movieId , @ModelAttribute("movie") MovieDto movie){
+    public String updateMovie(@PathVariable("id") Long movieId ,
+                              @Valid @ModelAttribute("movie") MovieDto movie,
+                              BindingResult result){
+        if (result.hasErrors()){
+            return "movies-edit";
+        }
         movie.setId(movieId);
         movieService.updateMovie(movie);
         return "redirect:/movies";

@@ -4,8 +4,6 @@ import com.rungroup.webTest.dtos.MovieDto;
 import com.rungroup.webTest.models.Movie;
 import com.rungroup.webTest.repositories.MovieRepository;
 import com.rungroup.webTest.services.MovieService;
-import org.apache.catalina.Cluster;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +24,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie saveMovie(Movie movie) {
+    public Movie saveMovie(MovieDto movieDto) {
+        Movie movie = mapToMovie(movieDto);
         return movieRepository.save(movie);
     }
 
