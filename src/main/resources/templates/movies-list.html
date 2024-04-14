@@ -17,7 +17,10 @@
                     <div class="position-relative mb-3">
                         <img class="img-fluid rounded-5 mb-3" th:src="${movie.photoUrl}" alt="..." />
                         <p th:text="${movie.title}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">hihihaha</p>
-                        <p th:text="${movie.description}" class="lead fw-normal text-muted mb-0" href="#!">hihihaha</p>
+                        <p th:text="${movie.year}" class="lead fw-normal text-muted mb-0" href="#!">hihihaha</p>
+                    </div>
+                    <div>
+                        <a class = "btn btn-primary mb-3" th:href = "@{/movies/{id}(id = ${movie.id})}">View</a>
                     </div>
                     <a class = "btn btn-primary" th:href = "@{/movies/{id}/edit(id = ${movie.id})}">Edit</a>
                 </div>

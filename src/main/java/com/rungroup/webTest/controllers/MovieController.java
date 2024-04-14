@@ -4,6 +4,7 @@ import com.rungroup.webTest.dtos.MovieDto;
 import com.rungroup.webTest.models.Movie;
 import com.rungroup.webTest.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +31,12 @@ public class MovieController {
         model.addAttribute("movies", movies);
         return "movies-list";
     }
-
+    @GetMapping("/movies/{id}")
+    public String movieDetail(@PathVariable("id") long id, Model model) {
+        MovieDto movieDto = movieService.findMovieById(id);
+        model.addAttribute("movie", movieDto); 
+        return "movie-detail";
+    }
     @GetMapping("/movies/new")
     public String createMovieForm(Model model){
         Movie movie = new Movie();

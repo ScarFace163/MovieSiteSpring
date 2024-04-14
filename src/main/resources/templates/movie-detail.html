@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<body class="d-flex flex-column">
+    <!-- Page Content-->
+    <section layout:fragment="body" class="py-5">
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="align-content-center">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder" th:text ="${movie.title}"> </h1>
+                    <p class="lead mb-0" th:text = "${movie.year}"></p>
+                </div>
+            </div>
+        </header>
+        <style>
+            .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }</style>
+        <!-- Page content-->
+        <div class="container center-content">
+            <div class="row">
+            </div>
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" th:src ="${movie.photoUrl}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted"th:text = "${movie.createdOn}"></div>
+                            <h2 class="card-title">About this movie</h2>
+                            <p class="card-text" th:text = "${movie.description}"></p>
+                            <div class="container center-content">
+                                <a class="btn btn-primary" > Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+</body>
+</html>
