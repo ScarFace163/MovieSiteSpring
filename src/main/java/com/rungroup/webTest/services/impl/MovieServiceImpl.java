@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-    private MovieRepository movieRepository;
+    private final MovieRepository movieRepository;
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -44,6 +44,12 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void delete(long id) {
         movieRepository.deleteById(id);
+    }
+
+    @Override
+    public List<MovieDto> searchMovies(String query) {
+        List<Movie> movies =  movieRepository.searchMovies(query);
+        return movies.stream().map(movie -> mapToMovieDto(movie)).collect(Collectors.toList());
     }
 
     private Movie mapToMovie(MovieDto movieDto) {

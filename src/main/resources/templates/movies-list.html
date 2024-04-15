@@ -13,6 +13,11 @@
                 <p class="lead fw-normal text-muted mb-0">That have been added already</p>
             </div>
             <div class="row gx-5">
+                <div>
+                    <form th:action = "@{movies/search}" class = "form-inline my-2 my-lg-0 mb-3">
+                            <input name = "query" class = "form-control mr-sm-2 mb-5 " type = "search" placeholder="Search movies">
+                    </form>
+                </div>
                 <div th:each="movie :${movies}" class="col-lg-6 mb-3">
                     <div class="position-relative mb-3">
                         <img class="img-fluid rounded-5 mb-3" th:src="${movie.photoUrl}" alt="..." />
