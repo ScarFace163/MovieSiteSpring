@@ -62,7 +62,7 @@ public class MovieController {
         return  "movies-edit";
     }
     @PostMapping("/movies/{id}/edit")
-    public String updateMovie(@PathVariable("id") Long movieId ,
+    public String updateMovie(@PathVariable("id") long movieId ,
                               @Valid @ModelAttribute("movie") MovieDto movie,
                               BindingResult result){
         if (result.hasErrors()){
@@ -70,6 +70,12 @@ public class MovieController {
         }
         movie.setId(movieId);
         movieService.updateMovie(movie);
+        return "redirect:/movies";
+    }
+    @GetMapping ("/movies/{id}/delete")
+    public String deleteMovie (@PathVariable("id") long id)
+    {
+        movieService.delete(id);
         return "redirect:/movies";
     }
 }

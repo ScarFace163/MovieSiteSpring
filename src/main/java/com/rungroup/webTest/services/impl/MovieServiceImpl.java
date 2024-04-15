@@ -41,6 +41,11 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
     }
 
+    @Override
+    public void delete(long id) {
+        movieRepository.deleteById(id);
+    }
+
     private Movie mapToMovie(MovieDto movieDto) {
         return Movie.builder()
                 .id (movieDto.getId())

@@ -35,7 +35,7 @@
                             <h2 class="card-title">About this movie</h2>
                             <p class="card-text" th:text = "${movie.description}"></p>
                             <div class="container center-content">
-                                <a class="btn btn-primary" > Delete</a>
+                                <a class="btn btn-primary" th:href = "@{/movies/{id}/delete(id = ${movie.id})}" > Delete</a>
                             </div>
                         </div>
                     </div>
