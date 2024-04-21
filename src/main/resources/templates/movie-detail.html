@@ -34,8 +34,10 @@
                             <div class="small text-muted"th:text = "${movie.createdOn}"></div>
                             <h2 class="card-title">About this movie</h2>
                             <p class="card-text" th:text = "${movie.description}"></p>
-                            <div class="container center-content">
+                            <div class="container center-content" >
                                 <a class="btn btn-primary" th:href = "@{/movies/{id}/delete(id = ${movie.id})}" > Delete</a>
+                                <div class="m-3">
+                                <a class="btn btn-primary" th:href = "@{/genres/{id}/new(id = ${movie.id})}" > Add genre</a>
                             </div>
                         </div>
                     </div>

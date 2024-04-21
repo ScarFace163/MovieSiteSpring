@@ -6,7 +6,9 @@ import com.rungroup.webTest.models.Movie;
 import com.rungroup.webTest.repositories.GenreRepository;
 import com.rungroup.webTest.repositories.MovieRepository;
 import com.rungroup.webTest.services.GenreService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GenreServiceImpl implements GenreService {
     private GenreRepository genreRepository;
     private MovieRepository movieRepository;
