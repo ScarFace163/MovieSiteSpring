@@ -1,6 +1,7 @@
 package com.rungroup.webTest.services.impl;
 
 import com.rungroup.webTest.dtos.MovieDto;
+import com.rungroup.webTest.mapper.MovieMapper;
 import com.rungroup.webTest.models.Movie;
 import com.rungroup.webTest.repositories.MovieRepository;
 import com.rungroup.webTest.services.MovieService;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.rungroup.webTest.mapper.MovieMapper.mapToMovie;
+import static com.rungroup.webTest.mapper.MovieMapper.mapToMovieDto;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -20,7 +24,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<MovieDto> findAllMovies() {
         List<Movie> movies = movieRepository.findAll();
-        return movies.stream().map((movie)->mapToMovieDto(movie)).collect(Collectors.toList());
+        return movies.stream().map(MovieMapper::mapToMovieDto).collect(Collectors.toList());
     }
 
     @Override
@@ -49,30 +53,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<MovieDto> searchMovies(String query) {
         List<Movie> movies =  movieRepository.searchMovies(query);
-        return movies.stream().map(movie -> mapToMovieDto(movie)).collect(Collectors.toList());
+        return movies.stream().map(MovieMapper::mapToMovieDto).collect(Collectors.toList());
     }
 
-    private Movie mapToMovie(MovieDto movieDto) {
-        return Movie.builder()
-                .id (movieDto.getId())
-                .title(movieDto.getTitle())
-                .photoUrl(movieDto.getPhotoUrl())
-                .description(movieDto.getDescription())
-                .year(movieDto.getYear())
-                .createdOn(movieDto.getCreatedOn())
-                .updatedOn(movieDto.getUpdatedOn())
-                .build();
-    }
-
-    private MovieDto mapToMovieDto(Movie movie){
-        return MovieDto.builder()
-                .id (movie.getId())
-                .title(movie.getTitle())
-                .photoUrl(movie.getPhotoUrl())
-                .description(movie.getDescription())
-                .year(movie.getYear())
-                .createdOn(movie.getCreatedOn())
-                .updatedOn(movie.getUpdatedOn())
-                .build();
-    }
 }

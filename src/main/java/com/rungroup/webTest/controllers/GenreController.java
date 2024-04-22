@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class GenreController {
     private GenreService genreService;
@@ -19,6 +21,13 @@ public class GenreController {
     @Autowired
     public GenreController(GenreService genreService) {
         this.genreService = genreService;
+    }
+
+    @GetMapping("/genres")
+    public String genresList(Model model) {
+        List<GenreDto> genres = genreService.findAllGenres();
+        model.addAttribute("genres", genres);
+        return "genres-list";
     }
 
     @GetMapping("/genres/{id}/new")

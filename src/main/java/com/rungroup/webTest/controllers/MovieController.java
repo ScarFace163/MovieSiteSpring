@@ -31,7 +31,8 @@ public class MovieController {
     @GetMapping("/movies/{id}")
     public String movieDetail(@PathVariable("id") long id, Model model) {
         MovieDto movieDto = movieService.findMovieById(id);
-        model.addAttribute("movie", movieDto); 
+        model.addAttribute("movie", movieDto);
+        model.addAttribute("genres" , movieDto.getGenres());
         return "movie-detail";
     }
     @GetMapping("/movies/new")

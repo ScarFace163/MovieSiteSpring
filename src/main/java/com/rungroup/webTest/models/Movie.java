@@ -11,7 +11,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -34,5 +36,5 @@ public class Movie {
     private LocalDateTime  updatedOn;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
-    private Set<Genre> genres = new HashSet<>();
+    private List<Genre> genres = new ArrayList<>();
 }

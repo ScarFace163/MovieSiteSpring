@@ -1,6 +1,7 @@
 package com.rungroup.webTest.services.impl;
 
 import com.rungroup.webTest.dtos.GenreDto;
+import com.rungroup.webTest.mapper.GenreMapper;
 import com.rungroup.webTest.models.Genre;
 import com.rungroup.webTest.models.Movie;
 import com.rungroup.webTest.repositories.GenreRepository;
@@ -8,10 +9,16 @@ import com.rungroup.webTest.repositories.MovieRepository;
 import com.rungroup.webTest.services.GenreService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.rungroup.webTest.mapper.GenreMapper.mapToGenre;
+import static com.rungroup.webTest.mapper.GenreMapper.mapToGenreDto;
+
 @Service
 public class GenreServiceImpl implements GenreService {
-    private GenreRepository genreRepository;
-    private MovieRepository movieRepository;
+    private final GenreRepository genreRepository;
+    private final MovieRepository movieRepository;
 
     public GenreServiceImpl(GenreRepository genreRepository, MovieRepository movieRepository) {
         this.genreRepository = genreRepository;
@@ -25,11 +32,10 @@ public class GenreServiceImpl implements GenreService {
         genre.setMovie(movie);
         genreRepository.save(genre);
     }
-    private Genre mapToGenre(GenreDto genreDto) {
-        return Genre.builder()
-                .id(genreDto.getId())
-                .type(genreDto.getType())
-                .description(genreDto.getDescription())
-                .build();
+
+    @Override
+    public List<GenreDto> findAllGenres() {
+        List <Genre> genres = genreRepository.findAll();
+        return  genres.stream().map(GenreMapper::mapToGenreDto).collect(Collectors.toList());
     }
 }

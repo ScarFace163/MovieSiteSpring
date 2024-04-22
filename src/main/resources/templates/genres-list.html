@@ -10,24 +10,20 @@
         <div class="card mb-4">
             <div class="container px-5 my-5">
                 <div class="text-center mb-5">
-                    <h1 class="fw-bolder">Movies</h1>
+                    <h1 class="fw-bolder">Genres</h1>
                     <p class="lead fw-normal text-muted mb-0">That have been added already</p>
                 </div>
                 <div class="row gx-5">
                     <div>
                         <form th:action = "@{/movies/search}" class = "form-inline my-2 my-lg-0 mb-3">
-                                <input name = "query" class = "form-control mr-sm-2 mb-5 " type = "search" placeholder="Search movies">
+                            <input name = "query" class = "form-control mr-sm-2 mb-5 " type = "search" placeholder="Search genres">
                         </form>
                     </div>
-                    <div th:each="movie :${movies}" class="col-lg-6 mb-3">
+                    <div th:each="genre :${genres}" class="col-lg-6 mb-3">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid rounded-5 mb-3" th:src="${movie.photoUrl}" alt="..." style="width: 100% ; height: 1000px ; object-fit: cover; "/>
-                            <p th:text="${movie.title}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">hihihaha</p>
-                            <p th:text="${movie.year}" class="lead fw-normal text-muted mb-0" href="#!">hihihaha</p>
+                            <p th:text="${genre.type}" class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">hihihaha</p>
+                            <h5 class="fw-lighter" th:text ="${genre.description}"> </h5>
                         </div>
-                        <div><a class = "btn btn-primary mb-3" th:href = "@{/movies/{id}(id = ${movie.id})}">View</a></div>
-
-                        <a class = "btn btn-primary" th:href = "@{/movies/{id}/edit(id = ${movie.id})}">Edit</a>
                     </div>
                 </div>
             </div>

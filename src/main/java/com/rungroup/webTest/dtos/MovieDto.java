@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.validation.constraints.NotEmpty;
 
 @Data
@@ -22,4 +24,5 @@ public class MovieDto {
     private Long year;
     private LocalDateTime createdOn;
     private LocalDateTime  updatedOn;
+    private List<GenreDto> genres;
 }
