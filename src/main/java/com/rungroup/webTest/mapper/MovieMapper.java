@@ -15,7 +15,6 @@ public class MovieMapper {
                 .year(movieDto.getYear())
                 .createdOn(movieDto.getCreatedOn())
                 .updatedOn(movieDto.getUpdatedOn())
-                .genres(movieDto.getGenres().stream().map(GenreMapper::mapToGenre).collect(Collectors.toList()))
                 .build();
     }
 

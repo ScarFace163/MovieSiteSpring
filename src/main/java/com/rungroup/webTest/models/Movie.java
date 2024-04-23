@@ -1,5 +1,7 @@
 package com.rungroup.webTest.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +11,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.context.annotation.Primary;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,9 +34,11 @@ public class Movie {
     private String description;
     private Long year;
     @CreationTimestamp
+    @DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
     private LocalDateTime createdOn;
     @UpdateTimestamp
-    private LocalDateTime  updatedOn;
+    @DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+    private LocalDateTime updatedOn;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
     private List<Genre> genres = new ArrayList<>();
