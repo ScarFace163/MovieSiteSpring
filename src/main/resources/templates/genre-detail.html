@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<body class="d-flex flex-column">
+<!-- Page Content-->
+<section layout:fragment="body" class="py-5">
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="align-content-center">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder" th:text ="${genre.type}"> </h1>
+            </div>
+        </div>
+    </header>
+    <style>
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+    </style>
+    <!-- Page content-->
+    <div class="container center-content">
+        <div class="row">
+        </div>
+        <!-- Blog entries-->
+        <div class="col-lg-8">
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <div class="card-body m-3">
+                    <div class="small text-muted"th:text = "${genre.createdOn}"></div>
+                    <h3 class="card-title">About the genre</h3>
+                    <h3 class="card-title">Description:</h3>
+                    <p class="card-text" th:text = "${genre.description}"></p>
+                    <div class="container center-content" >
+                        <a class="btn btn-primary" th:href = "@{/genres/{id}/delete(id = ${genre.id})}" > Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

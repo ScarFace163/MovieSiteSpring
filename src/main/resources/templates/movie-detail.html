@@ -36,7 +36,7 @@
                             <h3 class="card-title">Genres:</h3>
                             <div class="align-content-center mb-2">
                                 <div th:each="genre :${genres}" class="col-lg-6 mb-3">
-                                    <p class="card-text" th:text = "${genre.type}"></p>
+                                    <li class="nav-item"><a class="nav-link" th:href = "@{/genres/{id}(id = ${genre.id})}"> <p class="card-text" th:text = "${genre.type}"></p></a></li>
                                 </div>
                             </div>
                             <h3 class="card-title">Description:</h3>

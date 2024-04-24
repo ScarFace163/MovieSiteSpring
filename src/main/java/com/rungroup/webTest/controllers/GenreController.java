@@ -45,6 +45,12 @@ public class GenreController {
         genreService.createGenre(id,genreDto);
         return "redirect:/movies/" + id;
     }
+    @GetMapping("/genres/{id}")
+    public  String viewGenre(@PathVariable("id") Long id , Model model){
+        GenreDto genreDto = genreService.findGenreById(id);
+        model.addAttribute("genre" , genreDto);
+        return "genre-detail";
+    }
 
     @GetMapping("/genres/{id}/edit")
     public String editGenreForm(@PathVariable("id") long id , Model model){
