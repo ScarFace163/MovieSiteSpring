@@ -72,5 +72,11 @@ public class GenreController {
         genreService.updateGenre(genre);
         return "redirect:/movies";
     }
+    @GetMapping ("/genres/{id}/delete")
+    public String deleteMovie (@PathVariable("id") long id)
+    {
+        genreService.delete(id);
+        return "redirect:/movies";
+    }
 
 }

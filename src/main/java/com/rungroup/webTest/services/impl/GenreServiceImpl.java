@@ -51,4 +51,9 @@ public class GenreServiceImpl implements GenreService {
         Genre genre = mapToGenre(genreDto);
         genreRepository.save(genre);
     }
+    @Override
+    public void delete(long id) {
+        genreRepository.deleteById(id);
+    }
+
 }

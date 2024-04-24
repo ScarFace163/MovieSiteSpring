@@ -10,5 +10,6 @@ public interface GenreService {
     void createGenre(Long movieId, GenreDto genreDto);
     List<GenreDto> findAllGenres();
     GenreDto findGenreById(long genreId);
+    void delete (long id);
     void updateGenre(GenreDto genre);
 }
