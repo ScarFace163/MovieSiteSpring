@@ -9,6 +9,7 @@ public class GenreMapper {
                 .id(genreDto.getId())
                 .type(genreDto.getType())
                 .description(genreDto.getDescription())
+                .movie(genreDto.getMovie())
                 .build();
     }
     public static GenreDto mapToGenreDto(Genre genre) {
@@ -16,6 +17,7 @@ public class GenreMapper {
                 .id(genre.getId())
                 .type(genre.getType())
                 .description(genre.getDescription())
+                .movie(genre.getMovie())
                 .build();
     }
 }

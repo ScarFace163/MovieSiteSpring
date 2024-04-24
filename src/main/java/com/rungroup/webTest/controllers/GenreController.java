@@ -1,12 +1,15 @@
 package com.rungroup.webTest.controllers;
 
 import com.rungroup.webTest.dtos.GenreDto;
+import com.rungroup.webTest.dtos.MovieDto;
 import com.rungroup.webTest.models.Genre;
 import com.rungroup.webTest.services.GenreService;
 import com.rungroup.webTest.services.impl.GenreServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +44,27 @@ public class GenreController {
     public String createGenre(@PathVariable("id") Long id, @ModelAttribute("genre") GenreDto genreDto, Model model){
         genreService.createGenre(id,genreDto);
         return "redirect:/movies/" + id;
+    }
+
+    @GetMapping("/genres/{id}/edit")
+    public String editGenreForm(@PathVariable("id") long id , Model model){
+        GenreDto genreDto = genreService.findGenreById(id);
+        model.addAttribute("genre" , genreDto);
+        return  "genres-edit";
+    }
+    @PostMapping("/genres/{id}/edit")
+    public String updateGenre(@PathVariable("id") long genreId ,
+                              @Valid @ModelAttribute("genre") GenreDto genre,
+                              BindingResult result , Model model){
+        if (result.hasErrors()){
+            model.addAttribute("genre",genre);
+            return "genres-edit";
+        }
+        GenreDto genreDto = genreService.findGenreById(genreId);
+        genre.setId(genreId);
+        genre.setMovie(genreDto.getMovie());
+        genreService.updateGenre(genre);
+        return "redirect:/movies";
     }
 
 }

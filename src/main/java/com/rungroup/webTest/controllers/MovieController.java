@@ -62,8 +62,9 @@ public class MovieController {
     @PostMapping("/movies/{id}/edit")
     public String updateMovie(@PathVariable("id") long movieId ,
                               @Valid @ModelAttribute("movie") MovieDto movie,
-                              BindingResult result){
+                              BindingResult result, Model model){
         if (result.hasErrors()){
+            model.addAttribute("movie", movie);
             return "movies-edit";
         }
         movie.setId(movieId);

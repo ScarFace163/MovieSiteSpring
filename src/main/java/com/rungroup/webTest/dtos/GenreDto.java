@@ -1,5 +1,6 @@
 package com.rungroup.webTest.dtos;
 
+import com.rungroup.webTest.models.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class GenreDto {
     private String description;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+    private Movie movie;
 }
