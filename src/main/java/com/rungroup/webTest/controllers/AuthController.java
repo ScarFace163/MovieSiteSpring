@@ -37,9 +37,15 @@ public class AuthController {
         }
         if(result.hasErrors()){
             model.addAttribute("user" , user);
-            return "register";
+            return "register?fail";
         }
         userService.saveUser(user);
         return "redirect:/movies?success";
+    }
+    @GetMapping ("/login")
+    public String getLoginForm(Model model){
+        UserEntity user = new UserEntity();
+        model.addAttribute("user", user);
+        return "login";
     }
 }
