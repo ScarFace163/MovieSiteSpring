@@ -1,7 +1,6 @@
 package com.rungroup.webTest.services.impl;
 
 import com.rungroup.webTest.dtos.GenreDto;
-import com.rungroup.webTest.dtos.MovieDto;
 import com.rungroup.webTest.mapper.GenreMapper;
 import com.rungroup.webTest.models.Genre;
 import com.rungroup.webTest.models.Movie;
@@ -15,8 +14,6 @@ import java.util.stream.Collectors;
 
 import static com.rungroup.webTest.mapper.GenreMapper.mapToGenre;
 import static com.rungroup.webTest.mapper.GenreMapper.mapToGenreDto;
-import static com.rungroup.webTest.mapper.MovieMapper.mapToMovie;
-import static com.rungroup.webTest.mapper.MovieMapper.mapToMovieDto;
 
 @Service
 public class GenreServiceImpl implements GenreService {
