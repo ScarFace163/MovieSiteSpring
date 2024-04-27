@@ -78,5 +78,4 @@ public class GenreController {
         genreService.delete(id);
         return "redirect:/movies";
     }
-
 }
